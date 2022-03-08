@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./index.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +13,7 @@ class LoginComponent extends Component {
       username: "",
       password: "",
     };
-    console.log("farouq")
+    console.log("farouq");
   }
 
   //Handles switch between
@@ -75,8 +73,9 @@ class LoginComponent extends Component {
           progress: undefined,
         });
       }
-      setTimeout(() =>{window.open("/home");}, 3000)
-      
+      setTimeout(() => {
+        window.open("/home");
+      }, 3000);
     });
   };
 
@@ -99,75 +98,102 @@ class LoginComponent extends Component {
 
   render() {
     return (
-      <div className="centered">
+      <>
         {this.state.showLogin ? (
-          <div id="LoginBox" className="LoginCenter">
-            <div className="LogInTest">Log in</div>
-            <hr className="Line"></hr>
-            <div className="spacer">Space</div>
-            <div className="UserNameTest">Username</div>
-            <div className="UserNameTest">
-              <input
-                value={this.state.username}
-                onChange={this.handleUsernameChange}
-              />
-            </div>
-            <div className="spacer2">Space</div>
-            <div className="UserNameTest">Password</div>
-            <div className="UserNameTest">
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              />
-            </div>
-            <div className="spacer2">Space</div>
-            <div className="UserNameTest">
-              <button className="ButtonFormat" onClick={this.handleClick2}>
-                Log In
-              </button>
-              <button className="ButtonFormat" onClick={this.handleClick}>
-                Register
-              </button>
+          <div className="row mt-5">
+            <div className="col-md-6 m-auto">
+              <div className="card card-body">
+                <h1 className="text-center mb-3">
+                  <i className="fas fa-sign-in-alt"></i> Login
+                </h1>
+
+                {/* <form> */}
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="username"
+                    id="username"
+                    name="username"
+                    className="form-control"
+                    placeholder="Enter Username"
+                    value={this.state.username}
+                    onChange={this.handleUsernameChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    className="form-control"
+                    placeholder="Enter Password"
+                    value={this.state.password}
+                    onChange={this.handlePasswordChange}
+                  />
+                </div>
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={this.handleClick2}
+                >
+                  Login
+                </button>
+                {/* </form> */}
+                <p className="lead mt-4">
+                  No Account?{" "}
+                  <button onClick={this.handleClick}>Register</button>
+                </p>
+              </div>
             </div>
           </div>
         ) : null}
         {this.state.showRegister ? (
-          <div id="LoginBox" className="LoginCenter">
-            <div className="LdisogInTest">Register</div>
-            <hr className="Line"></hr>
-            <div className="spacer2">Space</div>
-            <div className="UserNameTest">Email</div>
-            <div className="UserNameTest">
-              <input></input>
-            </div>
-            <div className="spacer2">Space</div>
-            <div className="UserNameTest">Username</div>
-            <div className="UserNameTest">
-              <input
-                value={this.state.username}
-                onChange={this.handleUsernameChange}
-              />
-            </div>
-            <div className="spacer2">Space</div>
-            <div className="UserNameTest">Password</div>
-            <div className="UserNameTest">
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handlePasswordChange}
-              />
-            </div>
-            <div className="spacer2">Space</div>
-            <div className="UserNameTest">
-              <button className="ButtonFormat" onClick={this.handleClick3}>
-                Register
-              </button>
-              <button className="ButtonFormat" onClick={this.handleClick}>
-                Cancel
-              </button>
+          <div className="row mt-5">
+            <div className="col-md-6 m-auto">
+              <div className="card card-body">
+                <h1 className="text-center mb-3">
+                  <i className="fas fa-sign-in-alt"></i> Register
+                </h1>
+                <div className="form-group">
+                  {/* <label>Email</label> */}
+                  <input
+                    type="username"
+                    id="username"
+                    name="username"
+                    className="form-control"
+                    placeholder="Enter Email"
+                    value={this.state.username}
+                    onChange={this.handleUsernameChange}
+                  />
+                </div>
+                <div className="form-group">
+                  {/* <label className="form-label">Email</label> */}
+                  <input
+                    type="username"
+                    id="username"
+                    name="username"
+                    className="form-control"
+                    placeholder="Enter Password"
+                    value={this.state.username}
+                    onChange={this.handleUsernameChange}
+                  />
+                </div>
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={this.handleClick3}
+                >
+                  Register
+                </button>
+                <p className="lead mt-4">
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={this.handleClick}
+                  >
+                    Cancel
+                  </button>
+                </p>
+              </div>
             </div>
           </div>
         ) : null}
@@ -182,7 +208,7 @@ class LoginComponent extends Component {
           draggable
           pauseOnHover
         />
-      </div>
+      </>
     );
   }
 }
