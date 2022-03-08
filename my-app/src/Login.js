@@ -1,24 +1,26 @@
 import React, { Component } from "react";
 import "./index.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Axios from "axios";
 
 class LoginComponent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       showLogin: true,
       showRegister: false,
       username: "",
       password: "",
     };
-    console.log("farouq");
+    this.handleClick2 = this.props.handleClick;
   }
 
   //Handles switch between
   handleClick = () => {
     console.log("this is:", this);
+
     if (this.state.showLogin == false) {
       this.setState({
         showLogin: true,
@@ -32,52 +34,41 @@ class LoginComponent extends Component {
     }
   };
 
-  handleClick2 = () => {
-    //Area where login button click is recognized
-    //class's can be misleading, read plain text to identify components if confused
-    // toast.success("🦄 Wow so easy!", {
-    //   position: "top-left",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    // });
-
-    Axios.post("http://localhost:5000/login", {
-      username: this.state.username,
-      password: this.state.password,
-    }).then((response) => {
-      console.log(response);
-      if (response.data.message) {
-        console.log(response.data.message);
-        toast.error(response.data.message, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        console.log(response.data[0]);
-        toast.success(` Welcome ${response.data}`, {
-          position: "top-left",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-      setTimeout(() => {
-        window.open("/home");
-      }, 3000);
-    });
-  };
+  // handleClick2 = () => {
+  //   this.props.comp.isSignedIn = true;
+  //   Axios.post("http://localhost:5000/login", {
+  //     username: this.state.username,
+  //     password: this.state.password,
+  //   }).then((response) => {
+  //     console.log(response);
+  //     if (response.data.message) {
+  //       console.log(response.data.message);
+  //       toast.error(response.data.message, {
+  //         position: "top-left",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //     } else {
+  //       console.log(response.data[0]);
+  //       toast.success(` Welcome ${response.data}`, {
+  //         position: "top-left",
+  //         autoClose: 2000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //     }
+  //     setTimeout(() => {
+  //       window.open("/home");
+  //     }, 3000);
+  //   });
+  // };
 
   handleClick3 = () => {
     Axios.post("http://localhost:5000/register", {
