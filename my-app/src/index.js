@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./Main";
 import { AddChild } from "./addchild";
+import { toast } from "react-toastify";
+import Axios from "axios";
 import LoginComponent from "./Login";
 import Bathroom from "./bathroom";
 import SleepLog from "./sleeplog";
@@ -17,8 +19,44 @@ class App extends Component {
     this.state = {
       isSignedIn: false,
       username: "",
+      password: "",
     };
   }
+  handleClick2 = () => {
+    Axios.post("http://localhost:5000/login", {
+      username: this.state.username,
+      password: this.state.password,
+    }).then((response) => {
+      this.setState({ isSignedIn: true });
+      console.log(response);
+      if (response.data.message) {
+        console.log(response.data.message);
+        toast.error(response.data.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        console.log(response.data[0]);
+        toast.success(` Welcome ${response.data}`, {
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      setTimeout(() => {
+        window.open("/home");
+      }, 3000);
+    });
+  };
   render() {
     return (
       <Router>
@@ -28,7 +66,12 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                element={<LoginComponent comp={this.state} />}
+                element={
+                  <LoginComponent
+                    comp={this.state}
+                    handleClick={this.handleClick2}
+                  />
+                }
               />
 
               <Route
