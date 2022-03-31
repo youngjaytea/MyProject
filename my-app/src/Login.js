@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "./index.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Axios from "axios";
+import { withRouter } from "react-router-dom";
+import "./index.css";
 
 class LoginComponent extends Component {
   constructor(props) {
@@ -125,7 +126,9 @@ class LoginComponent extends Component {
                 </div>
                 <button
                   className="btn btn-primary btn-block"
-                  onClick={this.handleClick2}
+                  onClick={() =>
+                    this.handleClick2(this.state.username, this.state.password)
+                  }
                 >
                   Login
                 </button>
