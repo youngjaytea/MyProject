@@ -56,6 +56,28 @@ function App() {
         });
       });
   };
+  const handleClick3 = async (username, password) => {
+    Axios.post("http://localhost:5000/register", {
+      usernameSet: username,
+      passwordSet: password,
+    })
+      .then((response) => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.response);
+        toast.error(err.response.data, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
   return (
     <Fragment>
       <div>
@@ -63,7 +85,12 @@ function App() {
           <Route
             exact
             path="/"
-            element={<LoginComponent handleClick={handleClick2} />}
+            element={
+              <LoginComponent
+                handleClick={handleClick2}
+                handleReg={handleClick3}
+              />
+            }
           />
 
           <Route
