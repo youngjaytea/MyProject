@@ -38,8 +38,7 @@ app.post("/register", async (req, res) => {
     [username],
     (err, result) => {
       if (result.length > 0) {
-        res.status(409);
-        res.send("User with the username already exits");
+        return res.status(400).send("User with the username already exits");
       }
     }
   );
@@ -53,8 +52,8 @@ app.post("/register", async (req, res) => {
       "INSERT INTO credentials (username, password) VALUES (?,?)",
       [username, hash],
       (err, result) => {
-        if (!err) {
-          res.send({ message: "Welcome to thw baby tracker" });
+        if (err) {
+          return res.send({ message: "Welcome to thw baby tracker" });
         }
       }
     );
