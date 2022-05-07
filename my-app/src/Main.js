@@ -51,7 +51,7 @@ function Main() {
       setAddChild({ name, age, height, weight });
     };
     datas();
-  });
+  }, []);
   const handleClick = (e) => {};
 
   const handleUpdate = () => {
@@ -92,6 +92,7 @@ function Main() {
     //  for (let i = 0; i < e.target; i++){
     //      console.log(e.target[i].value)
     //  }
+    setDisplayModal(false);
   };
   const handleModal = () => {
     setDisplayModal(true);
